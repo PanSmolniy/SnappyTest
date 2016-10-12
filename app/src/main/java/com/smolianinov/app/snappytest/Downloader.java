@@ -2,6 +2,7 @@ package com.smolianinov.app.snappytest;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
@@ -20,20 +21,28 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import static com.smolianinov.app.snappytest.Constants.PATH;
+import static com.smolianinov.app.snappytest.Constants.URL_FILE_NAME;
 
 public class Downloader extends AsyncTask<String, String, String> {
 
     MainActivity activity;
-    JSONProcessor processor = new JSONProcessor();
+    JSONProcessor processor;
 
     public Downloader(Activity activity) {
         this.activity = (MainActivity) activity;
+        this.processor = new JSONProcessor(activity);
+    }
+
+    public boolean fileExistance(String fname){
+        File file = activity.getBaseContext().getFileStreamPath(fname);
+        return file.exists();
     }
 
     @Override
     protected String doInBackground(String... params) {
-        File f = new File(PATH);
-        if (!f.exists()) {
+        //File f = new File(PATH);
+        //if (!f.exists()) {
+        if (!fileExistance(URL_FILE_NAME)){
             Log.e("Doesnt Exist", "file not found");
             int count;
             try {
@@ -53,7 +62,9 @@ public class Downloader extends AsyncTask<String, String, String> {
             /*OutputStream output = new FileOutputStream(Environment
                     .getExternalStorageDirectory().toString()
                     + "/" + Constants.URL_FILE_NAME + ".dat");*/
-                OutputStream output = new FileOutputStream(Constants.PATH);
+                //OutputStream output = new FileOutputStream(Constants.PATH);
+                FileOutputStream output = activity.openFileOutput(URL_FILE_NAME, Context.MODE_PRIVATE);
+                //new FileOutputStream(URL_FILE_NAME, Context.MODE_PRIVATE);
 
                 byte data[] = new byte[1024];
 

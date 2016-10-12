@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    JSONProcessor proc = new JSONProcessor();
+   // JSONProcessor proc = new JSONProcessor();
     Downloader downloader;
     //public Compressor compressor = new Compressor();
 

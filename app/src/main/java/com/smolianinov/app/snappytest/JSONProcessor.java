@@ -1,6 +1,7 @@
 package com.smolianinov.app.snappytest;
 
 
+import android.app.Activity;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -20,9 +21,15 @@ import java.util.List;
 import static android.R.attr.data;
 import static com.smolianinov.app.snappytest.Constants.IMAGES;
 import static com.smolianinov.app.snappytest.Constants.IMAGE_LINK;
+import static com.smolianinov.app.snappytest.Constants.URL_FILE_NAME;
 
 public class JSONProcessor {
 
+    Activity activity;
+
+    public JSONProcessor(Activity activity) {
+        this.activity = activity;
+    }
 
     //private final String IMAGES = "images";
     //private final String IMAGE_LINK = "image_url";
@@ -51,7 +58,8 @@ public class JSONProcessor {
         File file = new File(Constants.PATH);
         InputStream is;
         try {
-            is = new FileInputStream(file);
+            //is = new FileInputStream(file);
+            is = activity.openFileInput(URL_FILE_NAME);
 
 
             int size = is.available();
