@@ -20,6 +20,8 @@ public class ImageAdapter extends BaseAdapter {
     public ImageAdapter(Context c, List<Bitmap> listBmp) {
         mContext = c;
         this.listBmp = listBmp;
+        //listBmp.addAll(listBmp);
+       // listBmp.addAll(listBmp);
     }
 
     public int getCount() {
@@ -27,7 +29,7 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     public Object getItem(int position) {
-        return null;
+        return listBmp.get(position);
     }
 
     public long getItemId(int position) {
