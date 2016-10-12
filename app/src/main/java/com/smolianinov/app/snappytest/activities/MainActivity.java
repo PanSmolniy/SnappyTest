@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.smolianinov.app.snappytest.Compressor;
+import com.smolianinov.app.snappytest.Constants;
+import com.smolianinov.app.snappytest.Downloader;
 import com.smolianinov.app.snappytest.JSONProcessor;
 import com.smolianinov.app.snappytest.R;
 import com.smolianinov.app.snappytest.RetrieveFeedTask;
@@ -22,13 +24,18 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     JSONProcessor proc = new JSONProcessor();
-    //Compressor compressor = new Compressor();
+    Downloader downloader;
+    //public Compressor compressor = new Compressor();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        downloader = new Downloader(this);
+        downloader.execute(Constants.URL);
+
 
 
         String[] args;

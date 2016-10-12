@@ -25,10 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
-import static com.smolianinov.app.snappytest.R.id.gridview;
-
 
 public class RetrieveFeedTask extends AsyncTask<String, Void, List<Bitmap>> {
 
@@ -71,9 +67,16 @@ public class RetrieveFeedTask extends AsyncTask<String, Void, List<Bitmap>> {
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
+                                    final int position, long id) {
 
-                callImageActivity((Bitmap) adapt.getItem(position));
+                Thread a = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callImageActivity((Bitmap) adapt.getItem(position));
+                    }
+                });
+                a.start();
+                //callImageActivity((Bitmap) adapt.getItem(position));
             }
         });
 

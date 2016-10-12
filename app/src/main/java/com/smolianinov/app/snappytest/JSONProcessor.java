@@ -8,22 +8,25 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.smolianinov.app.snappytest.Constants.IMAGES;
+import static com.smolianinov.app.snappytest.Constants.IMAGE_LINK;
+
 public class JSONProcessor {
 
 
-    private final String IMAGES = "images";
-    private final String IMAGE_LINK = "image_url";
+    //private final String IMAGES = "images";
+    //private final String IMAGE_LINK = "image_url";
 
     public String[] getLinksList() throws JSONException {
 
 
         JSONObject links = new JSONObject(getJsonString());
 
-        JSONArray linksArr = links.getJSONArray(IMAGES);
+        JSONArray linksArr = links.getJSONArray(Constants.IMAGES);
         String[] res = new String[linksArr.length()];
         for (int i =0; i < linksArr.length(); i++)
         {
-            res[i] = linksArr.getJSONObject(i).getString(IMAGE_LINK);
+            res[i] = linksArr.getJSONObject(i).getString(Constants.IMAGE_LINK);
         }
 
         return res;
@@ -32,6 +35,12 @@ public class JSONProcessor {
 
     private String getJsonString()
     {
+
+
+
+        //return null;
+
+
         return "{\"images\":\n" +
                 "[\n" +
                 "{\"image_url\":\"http://i1134.photobucket.com/albums/m614/Anadre5/3.jpg\"},\n" +

@@ -18,6 +18,7 @@ public class ImageActivity extends Activity {
     public ImageActivity() {
     }
 
+
     //Bitmap bmp;
 
     public ImageActivity(Bitmap bmp) {
@@ -36,16 +37,12 @@ public class ImageActivity extends Activity {
 
         //byte[] bytes = data.getByteArrayExtra("BMP");
         Bitmap bmp = null;//BitmapFactory.decodeByteArray(bytes1, 0, bytes1.length);
-        try {
-            bmp = Compressor.uncompress(bytes1);
-            ImageView imageView = (ImageView) findViewById(R.id.image);
-            imageView.setImageBitmap(bmp);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        //ImageView imageView = (ImageView) findViewById(R.id.image);
-        //imageView.setImageBitmap(bmp);
+        bmp = Compressor.uncompress(bytes1);
+
+        ImageView imageView = (ImageView) findViewById(R.id.image);
+        imageView.setImageBitmap(bmp);
+
 
 
     }
