@@ -6,8 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -66,7 +69,18 @@ class RetrieveFeedTask extends AsyncTask<String, Void, List<Bitmap>> {
         //imgList.get(0).setImageBitmap(feed.get(0));
         //imgList.get(1).setImageBitmap(feed.get(3));
         activity.findViewById(R.id.textView).setVisibility(View.GONE);
-        View view = ((FrameLayout) activity.getWindow().getDecorView().getRootView());
+        //View view = ((FrameLayout) activity.getWindow().getDecorView().getRootView());
+
+        GridView gridview = (GridView) activity.findViewById(R.id.gridview);
+        gridview.setAdapter(new ImageAdapter(activity, feed));
+
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                Toast.makeText(activity, "" + position,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 
@@ -77,6 +91,8 @@ class RetrieveFeedTask extends AsyncTask<String, Void, List<Bitmap>> {
         // TODO: check this.exception
         // TODO: do something with the feed
     }
+
+
 
 
 }
