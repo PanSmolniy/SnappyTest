@@ -3,10 +3,8 @@ package com.smolianinov.app.snappytest;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
-import java.util.concurrent.Callable;
 
 public class Compressor {
 
@@ -14,8 +12,7 @@ public class Compressor {
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] bytes = stream.toByteArray();
-        return bytes;
+        return stream.toByteArray();
 
     }
 
