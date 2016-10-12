@@ -38,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        String[] args;
+        /*String[] args;
         try {
             args = proc.getLinksList();
             new RetrieveFeedTask(this).execute(args);
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
     }

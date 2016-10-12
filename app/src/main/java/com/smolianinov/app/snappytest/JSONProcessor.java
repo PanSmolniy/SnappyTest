@@ -1,13 +1,23 @@
 package com.smolianinov.app.snappytest;
 
 
+import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.data;
 import static com.smolianinov.app.snappytest.Constants.IMAGES;
 import static com.smolianinov.app.snappytest.Constants.IMAGE_LINK;
 
@@ -36,12 +46,34 @@ public class JSONProcessor {
     private String getJsonString()
     {
 
+        String json;
 
+        File file = new File(Constants.PATH);
+        InputStream is;
+        try {
+            is = new FileInputStream(file);
+
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+            return json;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
 
         //return null;
 
 
-        return "{\"images\":\n" +
+        /*return "{\"images\":\n" +
                 "[\n" +
                 "{\"image_url\":\"http://i1134.photobucket.com/albums/m614/Anadre5/3.jpg\"},\n" +
                 "{\"image_url\":\"http://i229.photobucket.com/albums/ee318/viusmproelium/LANDENBERG_SARNEN_flyer-1-1.jpg\"},\n" +
@@ -56,7 +88,10 @@ public class JSONProcessor {
                 "{\"image_url\":\"http://i618.photobucket.com/albums/tt268/margmidd/INDMRGCOM-1Y-11.png\"},\n" +
                 "{\"image_url\":\"http://i1088.photobucket.com/albums/i324/chishono/Short%20North%20Chiropractic/shortnorthchiropractic1.jpg\"}\n" +
                 "]\n" +
-                "}";
+                "}";*/
     }
+
+
+
 
 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
@@ -36,6 +37,8 @@ public class RetrieveFeedTask extends AsyncTask<String, Void, List<Bitmap>> {
     }
 
     protected List<Bitmap> doInBackground(String... urls) {
+
+        Log.d("Downloaded", " start packing");
 
         List<Bitmap> listBmp = new ArrayList<>();
         try {
